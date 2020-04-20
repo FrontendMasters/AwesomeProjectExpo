@@ -1,26 +1,42 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, FlatList } from 'react-native';
+import ColorBox from './components/ColorBox';
 
+const COLORS = [
+  { colorName: 'Base03', hexCode: '#002b36' },
+  { colorName: 'Base02', hexCode: '#073642' },
+  { colorName: 'Base01', hexCode: '#586e75' },
+  { colorName: 'Base00', hexCode: '#657b83' },
+  { colorName: 'Base0', hexCode: '#839496' },
+  { colorName: 'Base1', hexCode: '#93a1a1' },
+  { colorName: 'Base2', hexCode: '#eee8d5' },
+  { colorName: 'Base3', hexCode: '#fdf6e3' },
+  { colorName: 'Yellow', hexCode: '#b58900' },
+  { colorName: 'Orange', hexCode: '#cb4b16' },
+  { colorName: 'Red', hexCode: '#dc322f' },
+  { colorName: 'Magenta', hexCode: '#d33682' },
+  { colorName: 'Violet', hexCode: '#6c71c4' },
+  { colorName: 'Blue', hexCode: '#268bd2' },
+  { colorName: 'Cyan', hexCode: '#2aa198' },
+  { colorName: 'Green', hexCode: '#859900' },
+];
 const App = () => {
   return (
     <SafeAreaView>
+      <FlatList
+        data={COLORS}
+        keyExtractor={(item) => item.colorName}
+        renderItem={({ item }) => (
+          <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
+        )}
+        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
+      />
       <View style={styles.container}>
-        <Text style={styles.text}>
-          {' '}
-          Here are some boxes of different Colors{' '}
-        </Text>
-        <View style={[styles.box, styles.cyan]}>
-          <Text style={styles.boxText}>Cyan: #2aa198</Text>
-        </View>
-        <View style={[styles.box, styles.blue]}>
-          <Text style={styles.boxText}>Blue: #2aa198</Text>
-        </View>
-        <View style={[styles.box, styles.magenta]}>
-          <Text style={styles.boxText}>Magenta: #d33682</Text>
-        </View>
-        <View style={[styles.box, styles.orange]}>
-          <Text style={styles.boxText}>Orange: #cb4b16</Text>
-        </View>
+        <Text style={styles.text}>Here are some boxes of different Colors</Text>
+        <ColorBox colorName="Cyan" hexCode="#2aa198" />
+        <ColorBox colorName="Blue" hexCode="#268bd2" />
+        <ColorBox colorName="Magenta" hexCode="#d33682" />
+        <ColorBox colorName="Orange" hexCode="#cb4b16" />
       </View>
     </SafeAreaView>
   );
@@ -35,28 +51,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-  },
-  box: {
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  cyan: {
-    backgroundColor: '#2aa198',
-  },
-  blue: {
-    backgroundColor: '#268bd2',
-  },
-  magenta: {
-    backgroundColor: '#d33682',
-  },
-  orange: {
-    backgroundColor: '#cb4b16',
-  },
-  boxText: {
-    color: 'white',
-    fontWeight: 'bold',
   },
 });
 
