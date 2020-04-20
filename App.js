@@ -1,40 +1,63 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Home from './screens/Home';
-import ColorPalette from './screens/ColorPalette';
-import AddNewPaletteModal from './screens/AddNewPaletteModal';
-
-const MainStack = createStackNavigator();
-const RootStack = createStackNavigator();
-
-const MainStackScreen = () => {
-  return (
-    <MainStack.Navigator>
-      <MainStack.Screen name="Home" component={Home} />
-      <MainStack.Screen
-        name="ColorPalette"
-        component={ColorPalette}
-        options={({ route }) => ({ title: route.params.paletteName })}
-      />
-    </MainStack.Navigator>
-  );
-};
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <RootStack.Navigator mode="modal">
-        <RootStack.Screen
-          name="Main"
-          component={MainStackScreen}
-          options={{ headerShown: false }}
-        />
-        <RootStack.Screen name="AddNewPalette" component={AddNewPaletteModal} />
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Text style={styles.text}>
+          {' '}
+          Here are some boxes of different Colors{' '}
+        </Text>
+        <View style={[styles.box, styles.cyan]}>
+          <Text style={styles.boxText}>Cyan: #2aa198</Text>
+        </View>
+        <View style={[styles.box, styles.blue]}>
+          <Text style={styles.boxText}>Blue: #2aa198</Text>
+        </View>
+        <View style={[styles.box, styles.magenta]}>
+          <Text style={styles.boxText}>Magenta: #d33682</Text>
+        </View>
+        <View style={[styles.box, styles.orange]}>
+          <Text style={styles.boxText}>Orange: #cb4b16</Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 10,
+    paddingTop: 40,
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  box: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  cyan: {
+    backgroundColor: '#2aa198',
+  },
+  blue: {
+    backgroundColor: '#268bd2',
+  },
+  magenta: {
+    backgroundColor: '#d33682',
+  },
+  orange: {
+    backgroundColor: '#cb4b16',
+  },
+  boxText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+});
 
 export default App;
