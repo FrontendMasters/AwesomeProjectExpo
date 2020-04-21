@@ -1,13 +1,13 @@
-import React from 'react';
 import 'react-native-gesture-handler';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home';
 import ColorPalette from './screens/ColorPalette';
-import { createStackNavigator } from '@react-navigation/stack';
 import ColorPaletteModal from './screens/ColorPaletteModal';
 
-const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
+const RootStack = createStackNavigator();
 
 const MainStackScreen = () => {
   return (
